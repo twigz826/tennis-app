@@ -5,7 +5,8 @@ class TennisMatch
   SCORE = {
     0 => 15,
     15 => 30,
-    30 => 40
+    30 => 40,
+    40 => 0
   }
 
   def initialize
