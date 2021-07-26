@@ -2,20 +2,22 @@
 
 # Class to play a tennis match
 class TennisMatch
+  SCORE = {
+    0 => 15,
+    15 => 30,
+    30 => 40
+  }
+
   def initialize
     @player1_score = 0
     @player2_score = 0
   end
 
-  def score
+  def game_score
     "#{@player1_score}-#{@player2_score}"
   end
 
   def win_point
-    if @player1_score == 0
-      @player1_score = 15
-    else
-      @player1_score = 30
-    end
+    @player1_score = SCORE[@player1_score]
   end
 end

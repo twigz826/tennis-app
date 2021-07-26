@@ -1,6 +1,6 @@
 # Tennis app
 
-The aim of this application is to replicate a game of tennis that can be played from the command line. I was inspired to create this app after seeing a youtube video for a [tennis kata](https://www.youtube.com/watch?v=MLhoqpSz7CI) but I would like to go beyond the basic scoring system and add more advanced functionality.
+The aim of this application is to replicate a game of tennis that can be played from the command line. I was inspired to create this app after seeing a youtube video for a [tennis kata](https://learn.madetech.com/katas/tennis/) but I would like to go beyond the basic scoring system and add more advanced functionality.
 
 ## User stories
 -------
