@@ -12,6 +12,10 @@ class TennisMatch
   end
 
   def win_point
-    @player1_score = 15
+    if @player1_score == 0
+      @player1_score = 15
+    else
+      @player1_score = 30
+    end
   end
 end
