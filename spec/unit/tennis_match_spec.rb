@@ -6,30 +6,41 @@ describe TennisMatch do
   let(:tennis_match) { TennisMatch.new }
 
   describe '#game_score' do
-    it 'starts a tennis match with each player on the starting score of 0' do
-      expect(tennis_match.game_score).to eq '0-0'
+    it 'starts a tennis match with each player on the starting game score of 0' do
+      expect(tennis_match.game_score).to eq 'The game score is 0-0'
     end
   end
 
   describe '#win_point' do
     it 'updates the score when player 1 wins a point' do
       tennis_match.win_point
-      expect(tennis_match.game_score).to eq '15-0'
+      expect(tennis_match.game_score).to eq 'The game score is 15-0'
     end
 
     it 'updates the score when player 1 wins two points' do
       2.times { tennis_match.win_point }
-      expect(tennis_match.game_score).to eq '30-0'
+      expect(tennis_match.game_score).to eq 'The game score is 30-0'
     end
 
     it 'updates the score when player 1 wins three points' do
       3.times { tennis_match.win_point }
-      expect(tennis_match.game_score).to eq '40-0'
+      expect(tennis_match.game_score).to eq 'The game score is 40-0'
     end
 
     it 'resets the game score when player 1 wins four points' do
       4.times { tennis_match.win_point }
-      expect(tennis_match.game_score).to eq '0-0'
+      expect(tennis_match.game_score).to eq 'The game score is 0-0'
+    end
+  end
+
+  describe '#match_score' do
+    it 'starts a tennis match with each player on the starting score of 0' do
+      expect(tennis_match.match_score).to eq 'The match score is 0-0'
+    end
+
+    it 'when a game is won, the match score is updated' do
+      4.times { tennis_match.win_point }
+      expect(tennis_match.match_score).to eq 'The match score is 1-0'
     end
   end
 end
