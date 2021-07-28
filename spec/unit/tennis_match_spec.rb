@@ -34,13 +34,13 @@ describe TennisMatch do
   end
 
   describe '#match_score' do
-    it 'starts a tennis match with each player on the starting score of 0' do
-      expect(tennis_match.match_score).to eq 'The match score is 0-0'
+    it 'starts a tennis match with each player on the starting match score of 0' do
+      expect(tennis_match.set_score).to eq 'The set score is 0-0'
     end
 
     it 'when a game is won, the match score is updated' do
       4.times { tennis_match.win_point }
-      expect(tennis_match.match_score).to eq 'The match score is 1-0'
+      expect(tennis_match.set_score).to eq 'The set score is 1-0'
     end
   end
 end

@@ -12,12 +12,12 @@ class TennisMatch
   def initialize
     @player1_game_score = 0
     @player2_game_score = 0
-    @player1_match_score = 0
-    @player2_match_score = 0
+    @player1_set_score = 0
+    @player2_set_score = 0
   end
 
-  def match_score
-    "The match score is #{@player1_match_score}-#{@player2_match_score}"
+  def set_score
+    "The set score is #{@player1_set_score}-#{@player2_set_score}"
   end
 
   def game_score
@@ -25,7 +25,7 @@ class TennisMatch
   end
 
   def win_point
-    update_match_score if game_point?
+    update_set_score if game_point?
     @player1_game_score = SCORING_SYSTEM[@player1_game_score]
   end
 
@@ -35,8 +35,8 @@ class TennisMatch
     return true if @player1_game_score == 40 && @player2_game_score != 40
   end
 
-  def update_match_score
-    @player1_match_score += 1
+  def update_set_score
+    @player1_set_score += 1
   end
 
 end
