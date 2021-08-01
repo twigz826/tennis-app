@@ -12,24 +12,43 @@ describe TennisMatch do
   end
 
   describe '#win_point' do
-    it 'updates the score when player 1 wins a point' do
-      tennis_match.win_point
-      expect(tennis_match.game_score).to eq 'The game score is 15-0'
+    context 'player 1' do
+      it 'updates the score on winning a point' do
+        tennis_match.win_point("p1")
+        expect(tennis_match.game_score).to eq 'The game score is 15-0'
+      end
+
+      it 'updates the score on winning two points' do
+        2.times { tennis_match.win_point("p1") }
+        expect(tennis_match.game_score).to eq 'The game score is 30-0'
+      end
+
+      it 'updates the score on winning three points' do
+        3.times { tennis_match.win_point("p1") }
+        expect(tennis_match.game_score).to eq 'The game score is 40-0'
+      end
+
+      it 'resets the game score on winning four points' do
+        4.times { tennis_match.win_point("p1") }
+        expect(tennis_match.game_score).to eq 'The game score is 0-0'
+      end
     end
 
-    it 'updates the score when player 1 wins two points' do
-      2.times { tennis_match.win_point }
-      expect(tennis_match.game_score).to eq 'The game score is 30-0'
-    end
+    context 'player 2' do
+      it 'updates the score on winning a point' do
+        tennis_match.win_point("p2")
+        expect(tennis_match.game_score).to eq 'The game score is 0-15'
+      end
 
-    it 'updates the score when player 1 wins three points' do
-      3.times { tennis_match.win_point }
-      expect(tennis_match.game_score).to eq 'The game score is 40-0'
-    end
+      it 'updates the score on winning two points' do
+        2.times { tennis_match.win_point("p2") }
+        expect(tennis_match.game_score).to eq 'The game score is 0-30'
+      end
 
-    it 'resets the game score when player 1 wins four points' do
-      4.times { tennis_match.win_point }
-      expect(tennis_match.game_score).to eq 'The game score is 0-0'
+      it 'resets the game score on winning four points' do
+        4.times { tennis_match.win_point("p2") }
+        expect(tennis_match.game_score).to eq 'The game score is 0-0'
+      end
     end
   end
 
@@ -39,8 +58,10 @@ describe TennisMatch do
     end
 
     it 'when a game is won, the match score is updated' do
-      4.times { tennis_match.win_point }
+      4.times { tennis_match.win_point("p1") }
       expect(tennis_match.set_score).to eq 'The set score is 1-0'
     end
+
   end
+
 end

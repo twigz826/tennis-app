@@ -24,9 +24,10 @@ class TennisMatch
     "The game score is #{@player1_game_score}-#{@player2_game_score}"
   end
 
-  def win_point
+  def win_point(player)
     update_set_score if game_point?
-    @player1_game_score = SCORING_SYSTEM[@player1_game_score]
+    @player1_game_score = SCORING_SYSTEM[@player1_game_score] if player == "p1"
+    @player2_game_score = SCORING_SYSTEM[@player2_game_score] if player == "p2"
   end
 
   private
