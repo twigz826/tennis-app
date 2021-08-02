@@ -34,6 +34,21 @@ class TennisGame
     end
   end
 
+  def new_game
+    reset_game_point_status
+    reset_game_score
+  end
+
+  def p1_game_winning_message
+    'Game Player 1.'
+  end
+
+  def p2_game_winning_message
+    'Game Player 2.'
+  end
+
+  private
+
   def deuce?
     @player1_score == 40 && @player2_score == 40
   end
@@ -46,16 +61,9 @@ class TennisGame
     @player2_score == 'ADV'
   end
 
-  def new_game
-    reset_game_point_status
-    reset_game_score
-  end
-
-  private
-
   def play_deuce_point
-    result = random_boolean
-    if result
+    point_result = random_boolean
+    if point_result
       @player1_score = 'ADV'
     else
       @player2_score = 'ADV'
@@ -63,22 +71,20 @@ class TennisGame
   end
 
   def play_p1_advantage_point
-    result = random_boolean
-    if result
+    if random_boolean == true
       @player1_score = 'game'
-      print "Game Player 1. The game score has been reset."
+      p1_game_winning_message
     else
       @player1_score = 40
     end
   end
 
   def play_p2_advantage_point
-    result = random_boolean
-    if result
+    if random_boolean == true
       @player2_score = 40
     else
       @player2_score = 'game'
-      print "Game Player 2. The game score has been reset."
+      p2_game_winning_message
     end
   end
 
@@ -101,10 +107,6 @@ class TennisGame
     @player1_score = 0
     @player2_score = 0
   end
-
-  # def game_complete?
-  #   (@p1_game_point == true && @player1_score.zero?) || (@p2_game_point == true && @player2_score.zero?)
-  # end
 
   def random_boolean
     [true, false].sample
