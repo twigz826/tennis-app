@@ -1,17 +1,12 @@
 # frozen_string_literal: true
 
+require_relative 'tennis_game'
+
 # Class to play a tennis match
 class TennisMatch
-  SCORING_SYSTEM = {
-    0 => 15,
-    15 => 30,
-    30 => 40,
-    40 => 0
-  }
 
   def initialize
-    @player1_game_score = 0
-    @player2_game_score = 0
+    @current_game = TennisGame.new
     @player1_set_score = 0
     @player2_set_score = 0
   end
@@ -21,23 +16,37 @@ class TennisMatch
   end
 
   def game_score
-    "The game score is #{@player1_game_score}-#{@player2_game_score}"
+    "The game score is #{@current_game.score}"
   end
 
-  def win_point(player)
-    update_set_score if game_point?
-    @player1_game_score = SCORING_SYSTEM[@player1_game_score] if player == "p1"
-    @player2_game_score = SCORING_SYSTEM[@player2_game_score] if player == "p2"
+  def play_point
+    @current_game.play_point
+    update_set_score
+    if @current_game.score == "0-0"
+      set_score
+    else
+      game_score
+    end
+  end
+
+  def update_set_score
+    if @current_game.player1_score == 'game'
+      update_p1_set_score
+      @current_game.new_game
+    elsif @current_game.player2_score == 'game'
+      update_p2_set_score
+      @current_game.new_game
+    end
   end
 
   private
 
-  def game_point?
-    return true if @player1_game_score == 40 && @player2_game_score != 40
+  def update_p1_set_score
+    @player1_set_score += 1
   end
 
-  def update_set_score
-    @player1_set_score += 1
+  def update_p2_set_score
+    @player2_set_score += 1
   end
 
 end
